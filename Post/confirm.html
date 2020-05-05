@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Info</title>
+    <link rel="stylesheet" href="css/style_post.css">
+</head>
+<body>
+    <div id="app">
+       <p>Имя: {{user.name}}</p><br/>
+        <p>Дата рождения: {{user.date}}</p><br/>
+        <p>Страна: {{user.country}}</p><br/>
+        <p>Владеет технологиями: {{user.techs}}</p>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            user:JSON.parse(sessionStorage.userData), 
+        }
+    });
+</script>
+</html>

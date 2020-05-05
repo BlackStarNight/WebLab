@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Post</title>
+        <link rel="stylesheet" href="css/style_post.css">
+    </head>
+    <body>
+        <div id="app">
+                <form action="" method="post" name="ready" id="form">
+                  <label for="name">Name:</label>
+                  <input type="text" name="name" placeholder="Name" required id="name">
+                  <br/><br/>
+                  <label for="name">Surname:</label>
+                  <input type="text" name="surname" placeholder="Surname" required id="surname">
+                  <br/><br/>
+                  <label for="name">Pass:</label>
+                  <input type="password" name="password" placeholder="Password" required id="password">
+                  <br/><br/>
+                  <label for="name">RePass:</label>
+                  <input type="password" name="confirmPassword" placeholder="Confirm password" required id="confirmPassword">
+                  <br/><br/>
+                  <label for="name">Email:</label>
+                  <input type="email" name="email" placeholder="Email" required id="email">
+                  <br/><br/>
+                  <label for="name">Date:</label>
+                  <input type="date" name="date" required v-model="date">
+                  <br/><br/>
+                  <span for="name">Gender:</span>
+                  <input type="radio" value="Male" name="gender" id="gender">Male</input>
+                  <input type="radio" value="Female" name="gender" id="gender">Female</input>
+                  <br/><br/>
+                  <label for="name">Country:</label>
+                  <select name="Country" id="country">
+                      <option value="" disable selected >Choose country</option>
+                      <option value="Belarus">Belarus</option>
+                      <option value="Russia">Russia</option>
+                      <option value="USA">USA</option>
+                      <option value="Canada">Canada</option>
+                  </select>
+                  <br/><br/>
+                  <label for="name">Technologies:</label>
+                  <select multiple name="technologies" id="techs" >
+                      
+                      <option value=".NET">.NET</option>
+                      <option value="Java">Java</option>
+                      <option value="React">React</option>
+                      <option value="Angular">Angular</option>
+                  </select>
+                  <br/><br/>
+                  <input type="button" value="Submit" onclick="check(document.getElementById('form'))">
+                  <input type="reset" value="Reset">  
+             </form>
+        </div>
+    <script type="text/javascript">
+        function check(form){
+        let mistakes = [];
+            if (form.password.value!=form.confirmPassword.value)
+            {
+                mistakes.push("Passwords don't match");
+            }
+            if ((form.gender.value==""))
+            {
+                mistakes.push("Choose a gender");
+            }
+            if (mistakes.length!=0)
+            {
+                event.preventDefault();
+                alert(mistakes.toString());
+            }
+            else{
+                let user = {
+                    name : form.name.value,
+                    surname : form.surname.value,
+                    password : form.password.value,
+                    email : form.email.value,
+                    date : form.date.value,
+                    gender : form.gender.value,
+                    country : form.country.value,
+                    techs : form.techs.value
+                };
+                let jeySon = JSON.stringify(user);
+                    sessionStorage.setItem("userData",jeySon);
+                    window.location = "confirm.html"
+                }
+            }
+        </script>
+    </body>
+
+</html>
